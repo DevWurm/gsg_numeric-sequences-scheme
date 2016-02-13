@@ -8,6 +8,7 @@
 (provide stream-filter)
 (provide stream-show)
 (provide natural-numbers)
+(provide stream-take)
 
 (define stream-car car)
 
@@ -46,3 +47,12 @@
           (stream-show (stream-cdr stm) (- n 1))))))
 
 (define natural-numbers (stream-cons 0 (stream-map (lambda (n) (+ n 1)) natural-numbers)))
+
+(define stream-take
+  (lambda (n stm)
+    (cond
+      ((= n 0) '())
+      (else (cons
+             (stream-car stm)
+             (stream-take (- n 1)
+                          (stream-cdr stm)))))))
