@@ -6,6 +6,7 @@
 (provide rec-sequence)
 (provide exp-sequence)
 (provide sum-until)
+(provide partial-sum-sequence)
 
 (define rec-sequence
   (lambda (a0 f)
