@@ -46,7 +46,7 @@
           (display (stream-car stm)) (display ", ")
           (stream-show (stream-cdr stm) (- n 1))))))
 
-(define natural-numbers (stream-cons 0 (stream-map (lambda (n) (+ n 1)) natural-numbers)))
+(define natural-numbers (stream-cons 1 (stream-map (lambda (n) (+ n 1)) natural-numbers)))
 
 (define stream-take
   (lambda (n stm)
