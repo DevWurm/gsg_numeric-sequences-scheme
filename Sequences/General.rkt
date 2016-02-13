@@ -3,15 +3,15 @@
 (require "../Streams/Streams.rkt")
 (require "../Util/Util.rkt")
 
-(provide recSequence)
-(provide expSequence)
+(provide rec-sequence)
+(provide exp-sequence)
 (provide sum-until)
 
-(define recSequence
+(define rec-sequence
   (lambda (a0 f)
-    (stream-cons a0 (f (recSequence a0 f)))))
+    (stream-cons a0 (f (rec-sequence a0 f)))))
 
-(define expSequence
+(define exp-sequence
   (lambda (f)
     (stream-map f natural-numbers)))
 
