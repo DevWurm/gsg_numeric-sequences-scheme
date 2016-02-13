@@ -5,6 +5,7 @@
 
 (provide recSequence)
 (provide expSequence)
+(provide sum-until)
 
 (define recSequence
   (lambda (a0 f)
