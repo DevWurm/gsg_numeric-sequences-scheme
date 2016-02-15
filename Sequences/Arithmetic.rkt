@@ -3,7 +3,7 @@
 (require "General.rkt")
 
 (provide rec-ar-sequence)
-;(provide exp-ar-sequence)
+(provide exp-ar-sequence)
 
 (define rec-ar-sequence
   (lambda (a0 p)
