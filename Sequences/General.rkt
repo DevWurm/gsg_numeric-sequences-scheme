@@ -8,6 +8,7 @@
 (provide !!)
 (provide sum-until)
 (provide partial-sum-sequence)
+(provide limit)
 
 (define rec-sequence
   (lambda (a0 f)
