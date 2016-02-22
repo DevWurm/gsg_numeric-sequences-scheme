@@ -5,16 +5,23 @@
 
 (provide rec-sequence)
 (provide exp-sequence)
+(provide !!)
 (provide sum-until)
 (provide partial-sum-sequence)
 
 (define rec-sequence
   (lambda (a0 f)
-    (stream-cons a0 (f (rec-sequence a0 f)))))
+    (stream-cons a0 (stream-map f (rec-sequence a0 f)))))
 
 (define exp-sequence
   (lambda (f)
     (stream-map f natural-numbers)))
+
+(define !!
+  (lambda (stm n)
+    (if (= n 0)
+        (stream-car stm)
+        (!! (stream-cdr stm) (- n 1)))))  
 
 (define sum-until
   (lambda (n stm)
@@ -33,3 +40,25 @@
       ; provided sequence. This list is equivalent to the partial sum sequence of the provided
       ; sequence.
       (stream-map (lambda (f) (f seq)) sum-functions))))
+
+(define limit
+  (lambda (seq eps af nmax)
+    (let*
+        ((ssqs (sublists af seq))
+         (ssqs-in-range (stream-take nmax ssqs))
+         (ssqs-in-eps (stream-filter (lambda (ssq) (< (list-diff ssq) eps)) ssqs-in-range)))
+      (if (null ssqs-in-eps)
+          #f
+          (average (car ssqs-in-eps))))))
+
+(define sublists
+  (lambda (n stm)
+    (cons (stream-take n stm) (sublists n (stream-cdr stm)))))
+
+(define average
+  (lambda (ls)
+    (/ (sum ls) (length ls))))
+
+(define list-diff
+  (lambda (ls)
+    (- (maximum ls) (minimum ls))))
