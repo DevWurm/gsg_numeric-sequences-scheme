@@ -7,7 +7,6 @@
 (provide minimum)
 (provide maximum)
 (provide stream-zip-with)
-(provide zip-with)
 
 (define sum
   (lambda (ls)
@@ -19,11 +18,11 @@
 
 (define minimum
   (lambda (ls)
-    (foldl1 (lambda (acc n) (if (n < acc) n acc)) ls)))
+    (foldl1 (lambda (acc n) (if (< n acc) n acc)) ls)))
 
 (define maximum
   (lambda (ls)
-    (foldl1 (lambda (acc n) (if (n > acc) n acc)) ls)))
+    (foldl1 (lambda (acc n) (if (> n acc) n acc)) ls)))
 
 (define stream-zip-with
   (lambda (f stm1 stm2)
