@@ -9,6 +9,7 @@
 (provide stream-show)
 (provide natural-numbers)
 (provide stream-take)
+(provide stream-drop)
 
 (define stream-car car)
 
@@ -56,3 +57,10 @@
              (stream-car stm)
              (stream-take (- n 1)
                           (stream-cdr stm)))))))
+
+(define stream-drop
+  (lambda (n stm)
+    (if (= n 0)
+        stm
+        (stream-drop (- n 1)
+                     (stream-cdr stm)))))
