@@ -43,14 +43,11 @@
       (stream-map (lambda (f) (f seq)) sum-functions))))
 
 (define limit
-  (lambda (seq eps af nmax)
-    (let*
-        ((ssqs (sublists af seq))
-         (ssqs-in-range (stream-take nmax ssqs))
-         (ssqs-in-eps (stream-filter (lambda (ssq) (< (list-diff ssq) eps)) ssqs-in-range)))
-      (if (null ssqs-in-eps)
-          #f
-          (average (car ssqs-in-eps))))))
+  (lambda (seq eps nf nmax)
+    (let ((test-list (stream-take nf (stream-drop (- nmax nf) seq))))
+      (if (<= (list-diff test-list) eps)
+          (average test-list)
+          #f))))
 
 (define sublists
   (lambda (n stm)
