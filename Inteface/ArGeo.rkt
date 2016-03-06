@@ -4,6 +4,8 @@
 (require "../Sequences/Arithmetic.rkt")
 (require "../Sequences/Geometric.rkt")
 
+(provide ar-geo-menue)
+
 (define ar-geo-menue
   (lambda ()
     (begin
